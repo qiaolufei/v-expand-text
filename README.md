@@ -1,6 +1,6 @@
 # v-expand-text
 
-> Collapse and expand multiline text.
+> Collapse and expand multiline text for Vue.
 
 ## Installing
 ```js

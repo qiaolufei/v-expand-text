@@ -1,6 +1,6 @@
 {
   "name": "v-expand-text",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Collapse and expand multiline text.",
   "main": "dist/vExpandText.min.js",
   "scripts": {
@@ -8,8 +8,21 @@
     "start": "webpack-dev-server --hot --inline",
 		"build": "webpack --display-error-details --config webpack.config.js"
   },
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/qiaolufei/v-expand-text.git"
+  },
+	"bugs": {
+    "url": "https://github.com/qiaolufei/v-expand-text/issues"
+  },
+	"keywords": [
+    "vue",
+		"collapse",
+		"expand",
+		"text"
+  ],
   "author": "qiaolufei",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-loader": "^7.1.2",
