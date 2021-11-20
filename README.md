@@ -15,15 +15,15 @@ Vue.use(VExpandText)
 
 - 多行文本折叠
 ```js
-<v-expand-text :text="text">
+<v-expand-text :text="text" />
 ```
 - 按钮控制文本折叠/展开
 ```js
-<v-expand-text :text="text" btn>
+<v-expand-text :text="text" btn />
 ```
 - popover展示全文本(hover展示)
 ```js
-<v-expand-text :text="text" popover>
+<v-expand-text :text="text" popover />
 ```
 
 ## Attributes
