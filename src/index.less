@@ -1,0 +1,33 @@
+.expand-text{
+  &-content{
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+  .expander {
+    text-align: left;
+    margin-top: 6px;
+    .action {
+      display: inline-block;
+      font-size: 14px;
+      color: #0281F0;
+      i {
+        display: inline;
+        font-size: 12px;
+      }
+    }
+    .action.action-pack {
+      margin-left: 0;
+    }
+  }
+}
+.popover-content{
+  max-width: 40vw;
+  max-height: 30vh;
+  overflow: hidden;
+  word-break: break-all;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+.f-csp{
+  cursor: pointer;
+}
