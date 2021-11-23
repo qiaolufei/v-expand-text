@@ -100,7 +100,7 @@ export default {
         const { row } = this
         const expandTextStyle = window.getComputedStyle(this.$refs.expandText)
         const expandTextHeight = parseFloat(expandTextStyle.height) // 获取总高度
-        const expandTextLineHeight = parseFloat(expandTextStyle.lineHeight) // 获取行高
+        const expandTextLineHeight = parseFloat(expandTextStyle.lineHeight === 'normal' ? parseFloat(expandTextStyle.fontSize) * 1.2 : expandTextStyle.lineHeight) // 获取行高
         // 计算行高
         const rects = Math.ceil(expandTextHeight / expandTextLineHeight)
         if (rects <= row) { // 不需要折叠展示
