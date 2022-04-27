@@ -1,37 +1,39 @@
 <template>
-  <div class="expand-text" ref="expandText">
-    <div v-if="!(popover && showPopoverJudge)">
-      <span class="expand-text-content" :style="expandStyle">{{ text }}</span>
-      <div class="expander">
-        <span
-          v-if="btn && showBtnJudge"
-        >
+  <div>
+    <div class="expand-text" ref="expandText">
+      <div v-if="!(popover && showPopoverJudge)">
+        <span class="expand-text-content" ref="expandTextContent" :style="expandStyle">{{ text }}</span>
+        <div class="expander">
           <span
-            v-if="!showFull"
-            class="action action-expand f-csp"
-            @click.stop="showFullFn(true)"
+            v-if="btn && showBtnJudge"
           >
-            展开
-            <i v-if="btnIcon" class="el-icon-arrow-down" />
+            <span
+              v-if="!showFull"
+              class="action action-expand f-csp"
+              @click.stop="showFullFn(true)"
+            >
+              展开
+              <i v-if="btnIcon" class="el-icon-arrow-down" />
+            </span>
+            <span
+              v-else
+              class="action action-pack f-csp"
+              @click.stop="showFullFn(false)"
+            >
+              收起
+              <i v-if="btnIcon" class="el-icon-arrow-up" />
+            </span>
           </span>
-          <span
-            v-else
-            class="action action-pack f-csp"
-            @click.stop="showFullFn(false)"
-          >
-            收起
-            <i v-if="btnIcon" class="el-icon-arrow-up" />
-          </span>
-        </span>
+        </div>
       </div>
+      <el-popover
+        v-else
+        :placement="placementC"
+        trigger="hover">
+        <div class="popover-content">{{ text }}</div>
+        <span class="expand-text-content f-csp" :style="expandStyle" slot="reference">{{ text }}</span>
+      </el-popover>
     </div>
-    <el-popover
-      v-else
-      :placement="placementC"
-      trigger="hover">
-      <div class="popover-content">{{ text }}</div>
-      <span class="expand-text-content f-csp" :style="expandStyle" slot="reference">{{ text }}</span>
-    </el-popover>
   </div>
 </template>
 <script>
@@ -69,7 +71,9 @@ export default {
       showFull: false, // 是否展示全文本
       expandStyle: '',
       showBtnJudge: false, // 判断是否需要折叠展示按钮
-      showPopoverJudge: false // 判断是否需要折叠展示popover
+      showPopoverJudge: false, // 判断是否需要折叠展示popover
+      minHeight:'',
+      maxHeight: ''
     }
   },
   computed: {
@@ -103,6 +107,7 @@ export default {
         const expandTextLineHeight = parseFloat(expandTextStyle.lineHeight === 'normal' ? parseFloat(expandTextStyle.fontSize) * 1.2 : expandTextStyle.lineHeight) // 获取行高
         // 计算行高
         const rects = Math.ceil(expandTextHeight / expandTextLineHeight)
+        this.maxHeight = parseFloat(window.getComputedStyle(this.$refs.collapseTextContent).height)
         if (rects <= row) { // 不需要折叠展示
           this.showBtnJudge = false
           this.showPopoverJudge = false
@@ -110,10 +115,11 @@ export default {
           this.showBtnJudge = true
           this.showPopoverJudge = true
           this.expandStyle = `display: -webkit-box;word-break: break-all;-webkit-line-clamp: ${this.row};-webkit-box-orient: vertical;text-overflow: ellipsis;overflow: hidden;`
+          this.minHeight = collapseTextLineHeight
+          this.$refs.collapseTextContent.style.height = `${this.minHeight}px`
         }
       })
     }
-
   }
 }
 </script>

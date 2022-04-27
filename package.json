@@ -1,6 +1,6 @@
 {
   "name": "v-expand-text",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Collapse and expand multiline text.",
   "main": "dist/vExpandText.min.js",
   "scripts": {
